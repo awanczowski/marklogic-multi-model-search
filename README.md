@@ -2,8 +2,8 @@
 
 Task idenfiy articles that may not have been visable to the end-user due to narrow classfication.
 
-* Identify semi-structured review data from PubMed
-* Load semi-structured review data from PubMed
+* Identify article data from PubMed
+* Load article data from PubMed
 * Create a canonical entity view for Articles
 * Integrate the source data defined by the entity
 * Identify data that could be graphed for Concepts
