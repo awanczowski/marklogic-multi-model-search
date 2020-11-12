@@ -2,9 +2,9 @@
 
 Task idenfiy articles that may not have been visable to the end-user due to narrow classfication.
 
-* Identify semi-structured review data from Glassdoor and Indeed
-* Load semi-structured review data from Glassdoor and Indeed
-* Create a canonical entity view for Job Reviews
+* Identify semi-structured review data from PubMed
+* Load semi-structured review data from PubMed
+* Create a canonical entity view for Articles
 * Integrate the source data defined by the entity
 * Identify data that could be graphed for Concepts
 * Load graph data from PubMed for MeSH
