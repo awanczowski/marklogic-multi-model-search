@@ -1,0 +1,14 @@
+## query
+# Diabetes Mellitus: http://id.nlm.nih.gov/mesh/D003920
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>
+PREFIX mesh: <http://id.nlm.nih.gov/mesh/>
+
+select ?label ?descriptor ?id ?uri
+WHERE {
+  ?descriptor meshv:broaderDescriptor+ mesh:D003920 .
+  ?id meshv:hasDescriptor ?descriptor .
+  ?descriptor rdfs:label ?label .
+  ?uri rdfs:isDefinedBy ?id
+}

@@ -51,4 +51,4 @@ The MarkLogic API includes a query library, Optic, that will allow for multi-mod
 
 We can execute a SPARQL query to determine the graph of relationships and join the query to view based data. This all occurs within the MarkLogic server and does not federate searches to other systems. This query utilizes the MarkLogic indexes to be efficient, transactional, and flexible. As data becomes available all indexes are updated in real-time with the commit of the transaction.
 
-See Workspaces for full example.
+See `examples` for full example of SPARQL, SJS, and XQuery.
