@@ -10,9 +10,9 @@ Task idenfiy articles that may not have been visable to the end-user due to narr
 * Load graph data from PubMed for MeSH
 * Classify the data with semantic information using a TDE
 * Provide Multi-Model search capability for data insights
-** Full-Text Search
-** Field Range Querying
-** Query Expansion using Semantic Data
+    * Full-Text Search
+    * Field Range Querying
+    * Query Expansion using Semantic Data
 * Provide a unified development API for searching data
 
 ## Ingest Semantic Data
