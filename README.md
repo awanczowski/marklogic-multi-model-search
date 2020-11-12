@@ -43,7 +43,7 @@ The flow will load and harmonize the records.
 `./gradlew loadArticles`
 `./gradlew harmonizeArticles`
 
-The loading of the data will utilize MLCP to load an aggregage file of XML that can be retirived form the pubmed samples found here <https://www.nlm.nih.gov/databases/download/pubmed_medline.html>. Download an aggregate file, for this example `pubmed20n0004.xml` and place it in `data/articles` to be picked up.
+The loading of the data will utilize MLCP to load an aggregage file of XML that can be retirived form the pubmed samples found here <https://www.nlm.nih.gov/databases/download/pubmed_medline.html>. Download an aggregate file, for this these queries `pubmed20n0004.xml` is used. Place gzip files in `data/articles` to be picked up by MLCP.
 
 ## Creating a Multi-Model Query
 

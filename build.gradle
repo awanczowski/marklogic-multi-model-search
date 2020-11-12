@@ -49,13 +49,15 @@ task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
 	username = mlUsername
 	password = mlPassword
 
-	input_file_path = "data/articles/pubmed20n0004.xml"
+	input_file_path = "data/articles"
 	input_file_type = "aggregates"
 	aggregate_record_element = "PubmedArticle"
 	uri_id = "PMID"
 	output_uri_prefix = "/data/pubmed/"
 	output_uri_suffix = ".xml"
 	output_collections = "IngestArticles"
+	input_compression_codec = "gzip"
+	input_compressed = true
 
 	transform_module = "/data-hub/5/transforms/mlcp-flow-transform.sjs"
 	transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"

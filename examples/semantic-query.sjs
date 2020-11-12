@@ -39,5 +39,5 @@ op.fromView("HubArticle", "HubArticle")
         op.on(op.viewCol("HubArticle", "id"),
             op.viewCol("MeSH", "id")))
     .limit(limit)
-    .result(null, { "meshDesc": meshDesc })
+    .result("object", { "meshDesc": meshDesc })
 
