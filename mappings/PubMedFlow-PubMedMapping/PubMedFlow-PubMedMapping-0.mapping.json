@@ -1,0 +1,30 @@
+{
+  "lang" : "zxx",
+  "name" : "PubMedFlow-PubMedMapping",
+  "description" : "",
+  "version" : 0,
+  "targetEntityType" : "http://example.org/HubArticle-0.0.1/HubArticle",
+  "sourceContext" : "/",
+  "sourceURI" : "/data/pubmed/97006.xml",
+  "properties" : {
+    "publicationYear" : {
+      "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/Journal/JournalIssue/PubDate/Year"
+    },
+    "id" : {
+      "sourcedFrom" : "PubmedArticle/MedlineCitation/PMID"
+    },
+    "abstract" : {
+      "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/Abstract/AbstractText"
+    },
+    "title" : {
+      "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/ArticleTitle"
+    },
+    "pubDate" : {
+      "sourcedFrom" : ""
+    },
+    "authors" : {
+      "sourcedFrom" : ""
+    }
+  },
+  "namespaces" : { }
+}

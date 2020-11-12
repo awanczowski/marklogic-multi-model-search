@@ -1,0 +1,15 @@
+{
+  "lang" : "zxx",
+  "path-namespace" : [ {
+    "prefix" : "es",
+    "namespace-uri" : "http://marklogic.com/entity-services"
+  } ],
+  "range-element-index" : [ {
+    "invalid-values" : "reject",
+    "localname" : "publicationYear",
+    "namespace-uri" : null,
+    "range-value-positions" : false,
+    "scalar-type" : "int"
+  } ],
+  "database-name" : "%%mlStagingDbName%%"
+}

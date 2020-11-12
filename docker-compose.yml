@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  mesh-demo:
+    image: mlregistry.marklogic.com/marklogic/ml-10.0-5:latest
+    volumes:
+      - 'marklogic:/var/opt/MarkLogic'
+      - './data:/mnt/data'
+    ports:
+      - "8005:8005/tcp"
+      - "8000-8003:8000-8003/tcp"
+      - "8010-8011:8010-8011/tcp"
+      - "8013:8013/tcp"
+      - "8063:8063/tcp"
+    expose:
+      - "7997"
+      - "7998"
+      - "7999"
+      
+volumes:
+  marklogic:
+  

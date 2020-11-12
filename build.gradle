@@ -1,0 +1,89 @@
+plugins {
+    id 'java'
+
+    // Gradle Properties plugin
+    id 'net.saliman.properties' version '1.4.6'
+
+    // Data Hub plugin
+    id 'com.marklogic.ml-data-hub' version '5.2.5'
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	jcenter()
+
+	// Needed for some mlcp dependencies, such as commons-csv:1.5.1-marklogic
+	maven { url "http://developer.marklogic.com/maven2/" }
+}
+
+configurations {
+	mlcp
+}
+
+dependencies {
+	mlcp "com.marklogic:mlcp:10.0.5"
+
+	/**
+	 * mlcp uses Log4j for logging, and if Log4j can't find a configuration file, it will complain and you'll
+	 * get none of mlcp's usually-useful logging. It is recommended then that your Gradle configuration for
+	 * mlcp include a directory or some other resource that provides a log4j.properties file.
+	 */
+	mlcp files("lib")
+}
+
+ext {
+	randomJobId = UUID.randomUUID().toString()
+}
+
+task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
+	
+	classpath = configurations.mlcp
+	command = "IMPORT"
+	mode = "local"
+
+	host = mlHost
+	port = mlStagingPort.toInteger()
+	
+    username = mlUsername
+	password = mlPassword
+
+	input_file_path = "data/articles/pubmed20n0004.xml"
+    input_file_type = "aggregates"
+    aggregate_record_element = "PubmedArticle"
+    uri_id = "PMID"
+    output_uri_prefix = "/data/pubmed/"
+    output_uri_suffix = ".xml"
+	output_collections = "IngestArticles"
+	
+	transform_module = "/data-hub/5/transforms/mlcp-flow-transform.sjs"
+	transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"
+	transform_param = "flow-name=PubMedFlow,step=1,job-id=" + randomJobId
+}
+
+task harmonizeArticles(type: com.marklogic.gradle.task.RunFlowTask) {
+  flowName = "PubMedFlow"
+  steps = ["2"]
+  jobId = randomJobId
+  showOptions = true
+}
+
+task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
+	
+	classpath = configurations.mlcp
+    
+	command = "IMPORT"
+
+	mode = "local"
+	host = mlHost
+	port = mlFinalPort.toInteger()
+
+	username = mlUsername
+	password = mlPassword
+
+	input_file_path = "data/mesh/mesh.nt"
+	input_file_type = "RDF"
+
+	output_graph = "http://id.nlm.nih.gov/mesh/2020"
+}

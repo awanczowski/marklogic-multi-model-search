@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tde:template xml:lang="zxx"
+    xmlns:tde="http://marklogic.com/xdmp/tde">
+    <tde:description></tde:description>
+    <tde:context>/*:envelope/*:instance[*:info/*:version = "0.0.1"][*:HubArticle]</tde:context>
+    <tde:vars>
+        <tde:var>
+            <tde:name>RDF_DEFINED_BY</tde:name>
+            <tde:val>sem:iri("http://www.w3.org/2000/01/rdf-schema#isDefinedBy")</tde:val>
+        </tde:var>
+        <tde:var>
+            <tde:name>MESH_HAS_DESC</tde:name>
+            <tde:val>sem:iri("http://id.nlm.nih.gov/mesh/vocab#hasDescriptor")</tde:val>
+        </tde:var>
+        <tde:var>
+            <tde:name>ARTICLE_ID</tde:name>
+            <tde:val>xs:string(./*:HubArticle/*:id)</tde:val>
+        </tde:var>
+    </tde:vars>
+    <tde:path-namespaces>
+        <tde:path-namespace>
+            <tde:prefix>es</tde:prefix>
+            <tde:namespace-uri>http://marklogic.com/entity-services</tde:namespace-uri>
+        </tde:path-namespace>
+    </tde:path-namespaces>
+    <tde:templates>
+        <tde:template>
+            <tde:context>ancestor::es:envelope//PubmedArticle/MedlineCitation/MeshHeadingList/MeshHeading/DescriptorName</tde:context>
+            <tde:vars>
+                <tde:var>
+                    <tde:name>subject-iri</tde:name>
+                    <tde:val>sem:iri(concat("http://example.org/HubArticle-0.0.1/HubArticle/", fn:encode-for-uri(xdmp:node-uri(.) || '#' || fn:position())))</tde:val>
+                </tde:var>
+            </tde:vars>
+            <tde:triples>
+                <tde:triple>
+                    <tde:subject>
+                        <tde:val>$subject-iri</tde:val>
+                        <tde:invalid-values>ignore</tde:invalid-values>
+                    </tde:subject>
+                    <tde:predicate>
+                        <tde:val>$RDF_DEFINED_BY</tde:val>
+                        <tde:invalid-values>ignore</tde:invalid-values>
+                    </tde:predicate>
+                    <tde:object>
+                        <tde:val>$ARTICLE_ID</tde:val>
+                        <tde:invalid-values>ignore</tde:invalid-values>
+                    </tde:object>
+                </tde:triple>
+                <tde:triple>
+                    <tde:subject>
+                        <tde:val>$ARTICLE_ID</tde:val>
+                        <tde:invalid-values>ignore</tde:invalid-values>
+                    </tde:subject>
+                    <tde:predicate>
+                        <tde:val>$MESH_HAS_DESC</tde:val>
+                        <tde:invalid-values>ignore</tde:invalid-values>
+                    </tde:predicate>
+                    <tde:object>
+                        <tde:val>sem:iri(concat("http://id.nlm.nih.gov/mesh/", ./@UI))</tde:val>
+                        <tde:invalid-values>ignore</tde:invalid-values>
+                    </tde:object>
+                </tde:triple>
+            </tde:triples>
+        </tde:template>
+    </tde:templates>
+</tde:template>

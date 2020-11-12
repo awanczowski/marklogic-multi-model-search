@@ -1,0 +1,33 @@
+{
+  "info" : {
+    "title" : "HubArticle",
+    "version" : "0.0.1",
+    "baseUri" : "http://example.org/"
+  },
+  "definitions" : {
+    "HubArticle" : {
+      "required" : [ ],
+      "pii" : [ ],
+      "elementRangeIndex" : [ "publicationYear" ],
+      "rangeIndex" : [ ],
+      "wordLexicon" : [ ],
+      "properties" : {
+        "id" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "title" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "abstract" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
+        "publicationYear" : {
+          "datatype" : "int"
+        }
+      }
+    }
+  }
+}
