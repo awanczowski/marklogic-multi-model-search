@@ -38,25 +38,25 @@ ext {
 }
 
 task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
-	
+
 	classpath = configurations.mlcp
 	command = "IMPORT"
 	mode = "local"
 
 	host = mlHost
 	port = mlStagingPort.toInteger()
-	
-    username = mlUsername
+
+	username = mlUsername
 	password = mlPassword
 
 	input_file_path = "data/articles/pubmed20n0004.xml"
-    input_file_type = "aggregates"
-    aggregate_record_element = "PubmedArticle"
-    uri_id = "PMID"
-    output_uri_prefix = "/data/pubmed/"
-    output_uri_suffix = ".xml"
+	input_file_type = "aggregates"
+	aggregate_record_element = "PubmedArticle"
+	uri_id = "PMID"
+	output_uri_prefix = "/data/pubmed/"
+	output_uri_suffix = ".xml"
 	output_collections = "IngestArticles"
-	
+
 	transform_module = "/data-hub/5/transforms/mlcp-flow-transform.sjs"
 	transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"
 	transform_param = "flow-name=PubMedFlow,step=1,job-id=" + randomJobId
