@@ -5,8 +5,14 @@
   "version" : 0,
   "targetEntityType" : "http://example.org/HubArticle-0.0.1/HubArticle",
   "sourceContext" : "/",
-  "sourceURI" : "/data/pubmed/97006.xml",
+  "sourceURI" : "/data/pubmed/15299174.xml",
   "properties" : {
+    "citationCount" : {
+      "sourcedFrom" : "count("
+    },
+    "wordCount" : {
+      "sourcedFrom" : "count(tokenize(PubmedArticle/MedlineCitation/Article/Abstract/AbstractText,\" \"))"
+    },
     "publicationYear" : {
       "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/Journal/JournalIssue/PubDate/Year"
     },

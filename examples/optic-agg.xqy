@@ -6,9 +6,6 @@ declare option xdmp:mapping "false";
  
 (: These values can come in from a users request. We will statically set them for this example. :)
 let $meshDesc := sem:iri("http://id.nlm.nih.gov/mesh/D003920")
-let $year := 1970
-let $wordQuery := "research"
-let $limit := 100
 
 (: Set-up a SPARQL query for query expanions :)
 (: Configure the SPARQL plan and set a view name. :)
@@ -35,10 +32,7 @@ let $mesh :=
 (: Join the two plans on the Article ID so the results can be further refined. :)
 return 
    op:from-view("HubArticle", "HubArticle") 
-    => op:where(cts:and-query((
-        cts:element-range-query(xs:QName("publicationYear"), ">=", $year),
-        cts:word-query($wordQuery)
-      )))
     => op:join-inner($mesh, op:on(op:view-col("HubArticle", "id"), op:view-col("MeSH", "id")))
-    => op:limit($limit)
+    => op:group-by("label", (op:count("labelCount", "label")))
+    => op:order-by(op:desc("labelCount"))
     => op:result("object", map:new((map:entry("meshDesc", $meshDesc))) )

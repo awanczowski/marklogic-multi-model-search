@@ -46,8 +46,8 @@ task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
 	host = mlHost
 	port = mlStagingPort.toInteger()
 
-	username = mlUsername
-	password = mlPassword
+	username = mlFlowOperatorUserName
+	password = mlFlowOperatorPassword
 
 	input_file_path = "data/articles"
 	input_file_type = "aggregates"
@@ -59,12 +59,17 @@ task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
 	input_compression_codec = "gzip"
 	input_compressed = true
 
-	transform_module = "/data-hub/5/transforms/mlcp-flow-transform.sjs"
-	transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"
-	transform_param = "flow-name=PubMedFlow,step=1,job-id=" + randomJobId
+	// transform_module = "/data-hub/5/transforms/mlcp-flow-transform.sjs"
+	// transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"
+	// transform_param = "flow-name=PubMedFlow,step=1,job-id=" + randomJobId
 }
 
 task harmonizeArticles(type: com.marklogic.gradle.task.RunFlowTask) {
+  doFirst {
+	mlUsername = mlFlowOperatorUserName
+    mlPassword = mlFlowOperatorPassword
+  }
+  
   flowName = "PubMedFlow"
   steps = ["2"]
   jobId = randomJobId
@@ -81,8 +86,8 @@ task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
 	host = mlHost
 	port = mlFinalPort.toInteger()
 
-	username = mlUsername
-	password = mlPassword
+	username = mlFlowOperatorUserName
+	password = mlFlowOperatorPassword
 
 	input_file_path = "data/mesh/mesh.nt"
 	input_file_type = "RDF"
