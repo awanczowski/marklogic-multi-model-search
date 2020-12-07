@@ -8,7 +8,7 @@
     "HubArticle" : {
       "required" : [ ],
       "pii" : [ ],
-      "elementRangeIndex" : [ "publicationYear" ],
+      "elementRangeIndex" : [ "id", "publicationYear" ],
       "rangeIndex" : [ ],
       "wordLexicon" : [ ],
       "properties" : {

@@ -10,6 +10,13 @@
     "namespace-uri" : null,
     "range-value-positions" : false,
     "scalar-type" : "int"
+  }, {
+    "invalid-values" : "reject",
+    "localname" : "id",
+    "namespace-uri" : null,
+    "range-value-positions" : false,
+    "scalar-type" : "string",
+    "collation" : "http://marklogic.com/collation/codepoint"
   } ],
   "database-name" : "%%mlStagingDbName%%"
 }
