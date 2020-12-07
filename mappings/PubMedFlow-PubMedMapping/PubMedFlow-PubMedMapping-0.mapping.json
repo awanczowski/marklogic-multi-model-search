@@ -5,13 +5,13 @@
   "version" : 0,
   "targetEntityType" : "http://example.org/HubArticle-0.0.1/HubArticle",
   "sourceContext" : "/",
-  "sourceURI" : "/data/pubmed/15299174.xml",
+  "sourceURI" : "/data/pubmed/15268686.xml",
   "properties" : {
     "citationCount" : {
       "sourcedFrom" : "count("
     },
     "wordCount" : {
-      "sourcedFrom" : "count(tokenize(PubmedArticle/MedlineCitation/Article/Abstract/AbstractText,\" \"))"
+      "sourcedFrom" : "count(PubmedArticle/MedlineCitation/Article/Abstract/AbstractText/tokenize(./text(), \" \"))"
     },
     "publicationYear" : {
       "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/Journal/JournalIssue/PubDate/Year"

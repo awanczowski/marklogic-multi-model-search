@@ -58,10 +58,6 @@ task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
 	output_collections = "IngestArticles"
 	input_compression_codec = "gzip"
 	input_compressed = true
-
-	// transform_module = "/data-hub/5/transforms/mlcp-flow-transform.sjs"
-	// transform_namespace = "http://marklogic.com/data-hub/mlcp-flow-transform"
-	// transform_param = "flow-name=PubMedFlow,step=1,job-id=" + randomJobId
 }
 
 task harmonizeArticles(type: com.marklogic.gradle.task.RunFlowTask) {
