@@ -45,6 +45,10 @@ The flow will load and harmonize the records.
 
 The loading of the data will utilize MLCP to load an aggregage file of XML that can be retirived form the pubmed samples found here <https://www.nlm.nih.gov/databases/download/pubmed_medline.html>. Download an aggregate file, for this these queries `pubmed20n0004.xml` is used. Place gzip files in `data/articles` to be picked up by MLCP.
 
+## Template Driven Extraction (TDE)
+
+A TDE is used to extract values from the Article content to form two additional triples each. The Article ID to the Document URI and the Article ID to the MeSH Subject Heading present in the categroizaiton of the Article. This will attach the article content to the ontological graph. See `src/main/ml-schemas/tde/pubmed.tdex` for the extraction rules.
+
 ## Creating a Multi-Model Query
 
 The MarkLogic API includes a query library, Optic, that will allow for multi-model searching. Our example here uses view data from the Entity Definition and Semantic Data from the Managed Triples.
@@ -52,3 +56,9 @@ The MarkLogic API includes a query library, Optic, that will allow for multi-mod
 We can execute a SPARQL query to determine the graph of relationships and join the query to view based data. This all occurs within the MarkLogic server and does not federate searches to other systems. This query utilizes the MarkLogic indexes to be efficient, transactional, and flexible. As data becomes available all indexes are updated in real-time with the commit of the transaction.
 
 See `examples` for full example of SPARQL, SJS, and XQuery.
+
+## Egressing Data
+
+The typical way to egress data from MarkLogic is create your own APIs via Data Services <https://docs.marklogic.com/guide/java/DataServices>. This will allow you to proxy MarkLogic with a Java Middle Tier. The examples that we illustrated in this search can be easily converted to a Data Service.  See `src/main/ml-modules/root/ds/search` for the Data Service configuration and main module. The Java source code can be found under `src/main/java/com/marklogic/example`
+
+In other cases, you may just want to call an out of the box REST API with a client that does not have a native client SDK. You can easily serialize your optic query plan by calling `.export()` this will create a JSON document that can be passed to the `/v1/rows` API. See exmples `examples/egress.r` to pull the data into R Data Frames or `examples/egress.py` to pull the data into Python Pandas.

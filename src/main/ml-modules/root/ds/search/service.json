@@ -1,0 +1,4 @@
+{
+    "endpointDirectory": "/ds/search",
+    "$javaClass": "com.marklogic.example.Search"
+}

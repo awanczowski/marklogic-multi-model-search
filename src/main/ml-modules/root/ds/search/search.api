@@ -1,0 +1,25 @@
+{
+	"functionName": "search",
+	"params": [
+		{
+			"name": "meshId",
+			"datatype": "string"
+		},
+		{
+			"name": "year",
+			"datatype": "int"
+		},
+		{
+			"name": "wordQuery",
+			"datatype": "string"
+		},
+		{
+			"name": "limit",
+			"datatype": "int"
+		}
+	],
+	"return": {
+		"datatype": "jsonDocument",
+		"$javaClass": "com.fasterxml.jackson.databind.JsonNode"
+	}
+}

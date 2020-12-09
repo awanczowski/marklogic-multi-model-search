@@ -6,10 +6,10 @@ plugins {
 
     // Data Hub plugin
     id 'com.marklogic.ml-data-hub' version '5.2.5'
-}
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+	// Data Service plugin
+    id 'com.marklogic.ml-development-tools' version '4.1.1'
+}
 
 repositories {
 	jcenter()
@@ -23,6 +23,18 @@ configurations {
 }
 
 dependencies {
+	// MarkLogic Client dependencies
+	compile group: 'com.marklogic', name: 'marklogic-client-api', version: '5.3.1'
+	compile group: 'com.marklogic', name: 'ml-javaclient-util', version: '4.1.0'
+
+	// Java Logging dependencies
+	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
+	// JAX-B dependencies for JDK 9+
+	implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+	implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+
+	// MarkLogic Content Pump
 	mlcp "com.marklogic:mlcp:10.0.5"
 
 	/**
@@ -89,4 +101,8 @@ task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
 	input_file_type = "RDF"
 
 	output_graph = "http://id.nlm.nih.gov/mesh/2020"
+}
+
+task generateSearchService(type: com.marklogic.client.tools.gradle.EndpointProxiesGenTask) {
+    serviceDeclarationFile = 'src/main/ml-modules/root/ds/search/service.json'
 }
