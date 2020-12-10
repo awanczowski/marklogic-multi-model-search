@@ -1,5 +1,14 @@
 # Multi-Model Data Management and Querying with MarkLogic
 
+## Prerequisites
+* MarkLogic Server 10.0-5
+* MarkLogic Data Hub Quick Start 5.2.5 (Optional)
+* Java 11
+* Gradle 5.2.1 (Optional, gradle wrapper can be leveraged) 
+* R Studio (Optional)
+* Python 3 (Optional)
+
+## Overview
 Task identify articles that may not have been visible to the end-user due to narrow classification.
 
 * Identify article data from PubMed
@@ -23,7 +32,7 @@ Download for the Mesh Headings: <https://www.nlm.nih.gov/databases/download/mesh
 
 The file should be placed under `data/mesh/mesh.nt` to be loaded by the pre-configured MLCP task.
 
-The gradle task ./gradlew loadMeSH can be run to load the graph into the Final Database.
+The gradle task `./gradlew loadMeSH` can be run to load the graph into the Final Database.
 
 ## Creating Entity Models
 
