@@ -103,6 +103,15 @@ task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
 	output_graph = "http://id.nlm.nih.gov/mesh/2020"
 }
 
+task initLoad {
+    dependsOn 'loadMeSH'
+    dependsOn 'loadArticles'
+    dependsOn 'harmonizeArticles'
+	tasks.findByName('loadMesh')
+    tasks.findByName('harmonizeArticles').mustRunAfter 'loadArticles'
+}
+
 task generateSearchService(type: com.marklogic.client.tools.gradle.EndpointProxiesGenTask) {
     serviceDeclarationFile = 'src/main/ml-modules/root/ds/search/service.json'
 }
+

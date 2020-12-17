@@ -14,17 +14,17 @@ let $limit := 100
 (: Configure the SPARQL plan and set a view name. :)
 let $mesh := 
   <sparql><![CDATA[
-        PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-        PREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>
-        PREFIX mesh: <http://id.nlm.nih.gov/mesh/>
+      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+      PREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>
+      PREFIX mesh: <http://id.nlm.nih.gov/mesh/>
+      PREFIX dcmi: <http://purl.org/dc/terms/>
 
-        select ?label ?descriptor ?id ?uri
-        WHERE {
-          ?descriptor meshv:broaderDescriptor @meshDesc .
-          ?descriptor rdfs:label ?label .
-          ?id meshv:hasDescriptor ?descriptor .
-          ?uri rdfs:isDefinedBy ?id
-        }
+      SELECT ?label ?descriptor ?id
+      WHERE {
+        ?descriptor meshv:broaderDescriptor* @meshDesc .
+        ?descriptor rdfs:label ?label .
+        ?id dcmi:references ?descriptor
+      }
   ]]>
   </sparql>/text() 
   => op:from-sparql("MeSH")

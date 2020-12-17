@@ -5,18 +5,18 @@ const op = require('/MarkLogic/optic');
 // These values can come in from a users request. We will statically set them for this example.
 const meshDesc = sem.iri("http://id.nlm.nih.gov/mesh/D003920");
 
-// Set-up a SPARQL query for query expanions
+// Set-up a SPARQL query for query expansion
 let sparqlQuery = `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>
 PREFIX mesh: <http://id.nlm.nih.gov/mesh/>
+PREFIX dcmi: <http://purl.org/dc/terms/>
 
-select ?label ?descriptor ?id ?uri
+SELECT ?label ?descriptor ?id
 WHERE {
-  ?descriptor meshv:broaderDescriptor @meshDesc .
+  ?descriptor meshv:broaderDescriptor* @meshDesc .
   ?descriptor rdfs:label ?label .
-  ?id meshv:hasDescriptor ?descriptor .
-  ?uri rdfs:isDefinedBy ?id
+  ?id dcmi:references ?descriptor
 }
 `
 

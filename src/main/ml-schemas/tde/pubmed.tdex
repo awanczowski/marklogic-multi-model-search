@@ -12,8 +12,8 @@
             <tde:val>sem:iri("http://id.nlm.nih.gov/mesh/vocab#hasDescriptor")</tde:val>
         </tde:var>
         <tde:var>
-            <tde:name>CONTRIBUTOR</tde:name>
-            <tde:val>sem:iri("http://purl.org/dc/elements/1.1/contributor")</tde:val>
+            <tde:name>DC_REFERENCES</tde:name>
+            <tde:val>sem:iri("http://purl.org/dc/terms/references")</tde:val>
         </tde:var>
         <tde:var>
             <tde:name>ARTICLE-ID</tde:name>
@@ -54,7 +54,7 @@
                         <tde:invalid-values>ignore</tde:invalid-values>
                     </tde:subject>
                     <tde:predicate>
-                        <tde:val>$MESH_HAS_DESC</tde:val>
+                        <tde:val>$DC_REFERENCES</tde:val>
                         <tde:invalid-values>ignore</tde:invalid-values>
                     </tde:predicate>
                     <tde:object>

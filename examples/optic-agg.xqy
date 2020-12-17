@@ -14,13 +14,13 @@ let $mesh :=
         PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
         PREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>
         PREFIX mesh: <http://id.nlm.nih.gov/mesh/>
+        PREFIX dcmi: <http://purl.org/dc/terms/>
 
-        select ?label ?descriptor ?id ?uri
+        SELECT ?label ?descriptor ?id
         WHERE {
-          ?descriptor meshv:broaderDescriptor @meshDesc .
+          ?descriptor meshv:broaderDescriptor* @meshDesc .
           ?descriptor rdfs:label ?label .
-          ?id meshv:hasDescriptor ?descriptor .
-          ?uri rdfs:isDefinedBy ?id
+          ?id dcmi:references ?descriptor
         }
   ]]>
   </sparql>/text() 
