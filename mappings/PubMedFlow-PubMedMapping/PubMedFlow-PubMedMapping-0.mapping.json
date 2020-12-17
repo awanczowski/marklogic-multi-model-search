@@ -24,12 +24,6 @@
     },
     "title" : {
       "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/ArticleTitle"
-    },
-    "pubDate" : {
-      "sourcedFrom" : ""
-    },
-    "authors" : {
-      "sourcedFrom" : ""
     }
   },
   "namespaces" : { }
