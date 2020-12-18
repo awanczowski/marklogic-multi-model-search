@@ -67,7 +67,7 @@
                                 "ns": "op",
                                 "fn": "from-sparql",
                                 "args": [
-                                    "\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>\nPREFIX mesh: <http://id.nlm.nih.gov/mesh/>\nPREFIX dcmi: <http://purl.org/dc/terms/>\n\nSELECT ?label ?descriptor ?id\nWHERE {\n  ?descriptor meshv:broaderDescriptor* @meshDesc .\n  ?descriptor rdfs:label ?label .\n  ?id dcmi:references ?descriptor\n}\n",
+                                    "\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>\nPREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>\nPREFIX mesh: <http://id.nlm.nih.gov/mesh/>\nPREFIX dct: <http://purl.org/dc/terms/>\n\nSELECT ?label ?descriptor ?id\nWHERE {\n  ?descriptor meshv:broaderDescriptor* @meshDesc .\n  ?descriptor rdfs:label ?label .\n  ?id dct:references ?descriptor\n}\n",
                                     "MeSH"
                                 ]
                             }
