@@ -68,7 +68,7 @@
         "user" : "",
         "runBefore" : false
       },
-      "retryLimit" : null,
+      "retryLimit" : 0,
       "batchSize" : 100,
       "threadCount" : 4,
       "stepDefinitionName" : "entity-services-mapping",
