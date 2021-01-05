@@ -1,7 +1,5 @@
 package com.marklogic.example;
 
-import java.io.Reader;
-
 import com.fasterxml.jackson.databind.JsonNode;
 import com.marklogic.client.DatabaseClient;
 import com.marklogic.client.DatabaseClientFactory;
