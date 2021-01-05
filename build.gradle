@@ -115,3 +115,6 @@ task generateSearchService(type: com.marklogic.client.tools.gradle.EndpointProxi
     serviceDeclarationFile = 'src/main/ml-modules/root/ds/search/service.json'
 }
 
+task generateCommentService(type: com.marklogic.client.tools.gradle.EndpointProxiesGenTask) {
+    serviceDeclarationFile = 'src/main/ml-modules/root/ds/comments/service.json'
+}

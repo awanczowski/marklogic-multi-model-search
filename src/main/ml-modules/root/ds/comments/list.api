@@ -1,0 +1,17 @@
+    {
+        "functionName": "list",
+        "params": [
+            {
+                "name": "articleId",
+                "datatype": "string"
+            },
+            {
+                "name": "limit",
+                "datatype": "int"
+            }
+        ],
+        "return": {
+            "datatype": "jsonDocument",
+            "$javaClass": "com.fasterxml.jackson.databind.JsonNode"
+        }
+    }

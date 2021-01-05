@@ -1,0 +1,4 @@
+{
+    "endpointDirectory": "/ds/comments",
+    "$javaClass": "com.marklogic.example.Comments"
+}

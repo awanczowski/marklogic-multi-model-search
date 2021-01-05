@@ -1,0 +1,21 @@
+{
+	"functionName": "insert",
+	"params": [
+		{
+			"name": "user",
+			"datatype": "string"
+		},
+		{
+			"name": "comment",
+			"datatype": "string"
+		},
+		{
+			"name": "articleId",
+			"datatype": "string"
+		}
+	],
+	"return": {
+		"datatype": "jsonDocument",
+		"$javaClass": "com.fasterxml.jackson.databind.JsonNode"
+	}
+}

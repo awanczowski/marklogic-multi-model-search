@@ -5,5 +5,12 @@
     "width" : 434,
     "height" : 221,
     "vertices" : { }
+  },
+  "HubArticleComment" : {
+    "x" : 819,
+    "y" : 92,
+    "width" : 350,
+    "height" : 188,
+    "vertices" : { }
   }
 }

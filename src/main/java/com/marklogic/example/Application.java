@@ -11,15 +11,32 @@ import org.slf4j.LoggerFactory;
 public class Application {
 
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
+    public static final String ARTICLE_ID = "15298351";
 
     public static void main(String[] args) {
         try {
             DatabaseClient client = getClient("localhost", 8011, "demo-user", "demo123", AuthScheme.DIGEST);
-            JsonNode result = Search.on(client).search("D003920", 1970, "research", 10);
-            logger.info(result.toPrettyString());
-        } catch (IllegalAccessException e) {
+            searchArticles(client);
+            writeComments(client);
+            listComments(client);
+           } catch (IllegalAccessException e) {
             logger.error("Can not create MarkLogic Client: ", e);
         }
+    }
+
+    public static void searchArticles(DatabaseClient client) {
+        JsonNode result = Search.on(client).search("D003920", 1970, "research", 10);
+        logger.info(result.toPrettyString());
+    }
+
+    public static void writeComments(DatabaseClient client) {
+        Comments.on(client).insert("John", "This is a great article!", ARTICLE_ID);
+        Comments.on(client).insert("Jane", "Interesting research.", ARTICLE_ID);
+    }
+
+    public static void listComments(DatabaseClient client) {
+        JsonNode list = Comments.on(client).list(ARTICLE_ID, 10);
+        logger.info(list.toPrettyString());
     }
 
     /**
