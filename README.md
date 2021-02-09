@@ -1,6 +1,7 @@
 # Multi-Model Data Management and Querying with MarkLogic
 
 ## Prerequisites
+
 * MarkLogic Server 10.0-6
 * MarkLogic Data Hub Quick Start 5.2.6 (Optional)
 * Java 11
@@ -8,7 +9,9 @@
 * R Studio (Optional)
 * Python 3 (Optional)
 * Node 13.8.0 (Optional)
+
 ## Overview
+
 Task identify articles that may not have been visible to the end-user due to narrow classification.
 
 * Identify article data from PubMed
@@ -19,9 +22,9 @@ Task identify articles that may not have been visible to the end-user due to nar
 * Load graph data from PubMed for MeSH
 * Classify the data with semantic information using a TDE
 * Provide Multi-Model search capability for data insights
-    * Full-Text Search
-    * Field Range Querying
-    * Query Expansion using Semantic Data
+  * Full-Text Search
+  * Field Range Querying
+  * Query Expansion using Semantic Data
 * Provide a unified development API for searching data
 
 ## Ingest Semantic Data
