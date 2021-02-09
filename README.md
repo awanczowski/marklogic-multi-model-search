@@ -1,8 +1,8 @@
 # Multi-Model Data Management and Querying with MarkLogic
 
 ## Prerequisites
-* MarkLogic Server 10.0-5
-* MarkLogic Data Hub Quick Start 5.2.5 (Optional)
+* MarkLogic Server 10.0-6
+* MarkLogic Data Hub Quick Start 5.2.6 (Optional)
 * Java 11
 * Gradle 5.2.1 (Optional, gradle wrapper can be leveraged) 
 * R Studio (Optional)

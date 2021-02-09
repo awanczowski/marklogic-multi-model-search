@@ -10,6 +10,16 @@ let $year := 1970
 let $wordQuery := "research"
 let $limit := 100
 
+(: Search across the corpus of content given the particular MarkLogic Search Criteria :)
+let $search := 
+      op:from-search(cts:and-query((
+        cts:element-range-query(xs:QName("publicationYear"), ">=", $year),
+        cts:word-query($wordQuery)
+      )))
+      
+(: Pull pertinent metadata from the projected views housed in the row index. :)      
+let $article := op:from-view("HubArticle", "HubArticle", (), op:fragment-id-col("viewDocId"))
+
 (: Set-up a SPARQL query for query expanions :)
 (: Configure the SPARQL plan and set a view name. :)
 let $mesh := 
@@ -19,26 +29,21 @@ let $mesh :=
       PREFIX mesh: <http://id.nlm.nih.gov/mesh/>
       PREFIX dct: <http://purl.org/dc/terms/>
 
-      SELECT ?label ?descriptor ?id
+      SELECT ?label ?descriptor ?articleId
       WHERE {
         ?descriptor meshv:broaderDescriptor* @meshDesc .
         ?descriptor rdfs:label ?label .
-        ?id dct:references ?descriptor
+        ?articleId dct:references ?descriptor
       }
   ]]>
   </sparql>/text() 
   => op:from-sparql("MeSH")
 
-
-(: Configure a Schema (Table) plan that utilzies the generated view from the entity model. :)
-(: You can further refine the results using ML search library. :)
-(: Join the two plans on the Article ID so the results can be further refined. :)
+(: Join the three plans so the results can be further refined. :)
 return 
-   op:from-view("HubArticle", "HubArticle") 
-    => op:where(cts:and-query((
-        cts:element-range-query(xs:QName("publicationYear"), ">=", $year),
-        cts:word-query($wordQuery)
-      )))
-    => op:join-inner($mesh, op:on(op:view-col("HubArticle", "id"), op:view-col("MeSH", "id")))
+    $search
+    => op:join-inner($article, op:on("fragmentId", "viewDocId"))
+    => op:join-inner($mesh, op:on("id", "articleId"))
+    => op:order-by(op:desc("score"))
     => op:limit($limit)
     => op:result("object", map:new((map:entry("meshDesc", $meshDesc))) )

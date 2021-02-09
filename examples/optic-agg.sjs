@@ -19,10 +19,8 @@ WHERE {
   ?id dct:references ?descriptor
 }
 `
-
-// Join the two plans on the URI/IRI so the results can be further refined. 
-// Configure a Schema (Table) plan that utilzies the generated view from the entity model.
-// You can further refine the results using ML search library. 
+// Join the  plans so the results can be further refined. 
+// groupBy allows you to do calculations on fields such as counts.
 op.fromView('HubArticle', 'HubArticle')
     .joinInner(
         op.fromSPARQL(sparqlQuery, 'MeSH'),

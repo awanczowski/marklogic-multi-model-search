@@ -58,6 +58,9 @@ task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
 	host = mlHost
 	port = mlStagingPort.toInteger()
 
+	ssl = sslFlag.toBoolean()
+    restrict_hosts = mlIsHostLoadBalancer.toBoolean()
+
 	username = mlFlowOperatorUserName
 	password = mlFlowOperatorPassword
 
@@ -94,8 +97,11 @@ task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
 	host = mlHost
 	port = mlFinalPort.toInteger()
 
-	username = mlFlowOperatorUserName
-	password = mlFlowOperatorPassword
+	ssl = sslFlag.toBoolean()
+    restrict_hosts = mlIsHostLoadBalancer.toBoolean()
+
+	// username = mlFlowOperatorUserName
+	// password = mlFlowOperatorPassword
 
 	input_file_path = "data/mesh/mesh.nt"
 	input_file_type = "RDF"

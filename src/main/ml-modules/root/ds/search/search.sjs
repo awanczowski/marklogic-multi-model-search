@@ -10,37 +10,40 @@ var limit;
 var meshDesc = sem.iri('http://id.nlm.nih.gov/mesh/' + meshId);
 
 
-// Set-up a SPARQL query for query expanions
+// Search across the corpus of content given the particular MarkLogic Search Criteria
+const search =
+    op.fromSearch(cts.andQuery([
+        cts.elementRangeQuery('publicationYear', '>=', year),
+        cts.wordQuery(wordQuery)
+    ]))
+    .joinDocUri('uri', op.fragmentIdCol('fragmentId'))
+
+// Pull pertinent metadata from the projected views housed in the row index. 
+const article = op.fromView('HubArticle', 'HubArticle', null, op.fragmentIdCol('viewDocId'));
+
+// Set-up a SPARQL query for query expansion
 let sparqlQuery = `
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX meshv: <http://id.nlm.nih.gov/mesh/vocab#>
 PREFIX mesh: <http://id.nlm.nih.gov/mesh/>
 PREFIX dct: <http://purl.org/dc/terms/>
 
-SELECT ?label ?descriptor ?id
+SELECT ?label ?descriptor ?articleId
 WHERE {
   ?descriptor meshv:broaderDescriptor* @meshDesc .
   ?descriptor rdfs:label ?label .
-  ?id dct:references ?descriptor
+  ?articleId dct:references ?descriptor
 }
 `
-// Join the two plans on the URI/IRI so the results can be further refined. 
-// Configure a Schema (Table) plan that utilizes the generated view from the entity model.
-// You can further refine the results using ML search library. 
-let results = op.fromView('HubArticle', 'HubArticle')
-    .where(
-        cts.andQuery([
-            cts.elementRangeQuery('publicationYear', '>=', year),
-            cts.wordQuery(wordQuery)
-        ])
-    )
-    .joinInner(
-        op.fromSPARQL(sparqlQuery, 'MeSH'),
-        op.on(op.viewCol('HubArticle', 'id'),
-            op.viewCol('MeSH', 'id')))
-    .limit(limit)
-    .result('object', { 'meshDesc': meshDesc });
+const sparql = op.fromSPARQL(sparqlQuery, 'MeSH');
 
+// Join the three plans so the results can be further refined. 
+let results = search
+    .joinInner(article, op.on('fragmentId', 'viewDocId'))
+    .joinInner(sparql, op.on('id', 'articleId'))
+    .orderBy(op.desc('score'))
+    .limit(limit)
+    .result('object', {'meshDesc': meshDesc});
 
 let output = {
     'params': {

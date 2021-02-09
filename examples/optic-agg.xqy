@@ -27,9 +27,8 @@ let $mesh :=
   => op:from-sparql("MeSH")
 
 
-(: Configure a Schema (Table) plan that utilzies the generated view from the entity model. :)
-(: You can further refine the results using ML search library. :)
-(: Join the two plans on the Article ID so the results can be further refined. :)
+(: Join the  plans so the results can be further refined. :)
+(: group-by allows you to do calculations on fields such as counts. :)
 return 
    op:from-view("HubArticle", "HubArticle") 
     => op:join-inner($mesh, op:on(op:view-col("HubArticle", "id"), op:view-col("MeSH", "id")))

@@ -173,3 +173,4 @@ exp-staging-entity-options.xml
 final-entity-options.xml
 staging-entity-options.xml
 .vscode/settings.json
+gradle-dhs.properties
