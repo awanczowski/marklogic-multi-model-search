@@ -73,7 +73,7 @@ See `examples` for full example of SPARQL, SJS, and XQuery.
 
 The typical way to egress data from MarkLogic is create your own APIs via Data Services <https://docs.marklogic.com/guide/java/DataServices> or <https://docs.marklogic.com/guide/node-dev/dataservicesnode>. This will allow you to proxy MarkLogic with a Java or NodeJs Middle Tier. The examples that we illustrated in this search can be easily converted to a Data Service.  See `src/main/ml-modules/root/ds/search` for the Data Service configuration and main module. The Java source code can be found under `src/main/java/com/marklogic/example` the NodeJS source code can be found under `node/`
 
-In other cases, you may just want to call an out of the box REST API with a client that does not have a native client SDK. You can easily serialize your optic query plan by calling `.export()` this will create a JSON document that can be passed to the `/v1/rows` API. See examples `examples/egress.r` to pull the data into R Data Frames or `examples/egress.py` to pull the data into Python Pandas.
+In other cases, you may just want to call an out of the box REST API with a client that does not have a native client SDK. You can easily use your optic query with the `/v1/rows` API. Optic supports a Query DSL that allows you build to rich queries an interact with the server. See examples `examples/egress.r` to pull the data into R Data Frames or `examples/egress.py` to pull the data into Python Pandas.
 
 ## Real-Time Inserts with Data Services
 

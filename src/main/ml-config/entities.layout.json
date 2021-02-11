@@ -1,16 +1,16 @@
 {
   "HubArticle" : {
-    "x" : 345,
-    "y" : 79,
+    "x" : 107,
+    "y" : 70,
     "width" : 434,
     "height" : 221,
     "vertices" : { }
   },
   "HubArticleComment" : {
-    "x" : 819,
-    "y" : 92,
-    "width" : 350,
-    "height" : 188,
+    "x" : 619,
+    "y" : 70,
+    "width" : 352,
+    "height" : 247,
     "vertices" : { }
   }
 }
