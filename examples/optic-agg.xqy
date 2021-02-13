@@ -23,7 +23,7 @@ let $mesh :=
           ?id dct:references ?descriptor
         }
   ]]>
-  </sparql>/text() 
+  </sparql>
   => op:from-sparql("MeSH")
 
 
