@@ -16,6 +16,10 @@
           "datatype" : "string",
           "collation" : "http://marklogic.com/collation/codepoint"
         },
+        "publication" : {
+          "datatype" : "string",
+          "collation" : "http://marklogic.com/collation/codepoint"
+        },
         "title" : {
           "datatype" : "string",
           "collation" : "http://marklogic.com/collation/codepoint"
@@ -25,10 +29,12 @@
           "collation" : "http://marklogic.com/collation/codepoint"
         },
         "publicationYear" : {
-          "datatype" : "int"
+          "datatype" : "int",
+          "collation" : "http://marklogic.com/collation/codepoint"
         },
         "wordCount" : {
-          "datatype" : "int"
+          "datatype" : "int",
+          "collation" : "http://marklogic.com/collation/codepoint"
         }
       }
     }

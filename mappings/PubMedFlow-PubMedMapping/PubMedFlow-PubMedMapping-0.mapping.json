@@ -13,6 +13,9 @@
     "wordCount" : {
       "sourcedFrom" : "count(PubmedArticle/MedlineCitation/Article/Abstract/AbstractText/tokenize(., \" \"))"
     },
+    "publication" : {
+      "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/Journal/Title"
+    },
     "publicationYear" : {
       "sourcedFrom" : "PubmedArticle/MedlineCitation/Article/Journal/JournalIssue/PubDate/Year"
     },
