@@ -7,77 +7,75 @@ plugins {
     // Data Hub plugin
     id 'com.marklogic.ml-data-hub' version '5.2.6'
 
-	// Data Service plugin
+    // Data Service plugin
     id 'com.marklogic.ml-development-tools' version '4.1.1'
 }
 
 repositories {
-	jcenter()
+    jcenter()
 
-	// Needed for some mlcp dependencies, such as commons-csv:1.5.1-marklogic
-	maven { url "http://developer.marklogic.com/maven2/" }
+    // Needed for some mlcp dependencies, such as commons-csv:1.5.1-marklogic
+    maven { url "http://developer.marklogic.com/maven2/" }
 }
 
 configurations {
-	mlcp
+    mlcp
 }
 
 dependencies {
-	// MarkLogic Client dependencies
-	compile group: 'com.marklogic', name: 'marklogic-client-api', version: '5.3.1'
-	compile group: 'com.marklogic', name: 'ml-javaclient-util', version: '4.1.0'
+    // MarkLogic Client dependencies
+    compile group: 'com.marklogic', name: 'marklogic-client-api', version: '5.3.1'
+    compile group: 'com.marklogic', name: 'ml-javaclient-util', version: '4.1.0'
 
-	// Java Logging dependencies
-	compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    // Java Logging dependencies
+    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
 
-	// JAX-B dependencies for JDK 9+
-	implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
-	implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+    // JAX-B dependencies for JDK 9+
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
 
-	// MarkLogic Content Pump
-	mlcp "com.marklogic:mlcp:10.0.5"
+    // MarkLogic Content Pump
+    mlcp "com.marklogic:mlcp:10.0.5"
 
-	/**
-	 * mlcp uses Log4j for logging, and if Log4j can't find a configuration file, it will complain and you'll
-	 * get none of mlcp's usually-useful logging. It is recommended then that your Gradle configuration for
-	 * mlcp include a directory or some other resource that provides a log4j.properties file.
-	 */
-	mlcp files("lib")
+    /**
+     * mlcp uses Log4j for logging, and if Log4j can't find a configuration file, it will complain and you'll
+     * get none of mlcp's usually-useful logging. It is recommended then that your Gradle configuration for
+     * mlcp include a directory or some other resource that provides a log4j.properties file.
+     */
+    mlcp files("lib")
 }
 
 ext {
-	randomJobId = UUID.randomUUID().toString()
+    randomJobId = UUID.randomUUID().toString()
 }
 
 task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
 
-	classpath = configurations.mlcp
-	command = "IMPORT"
-	mode = "local"
+    classpath = configurations.mlcp
+    command = "IMPORT"
+    mode = "local"
 
-	host = mlHost
-	port = mlStagingPort.toInteger()
+    host = mlHost
+    port = mlStagingPort.toInteger()
 
-	ssl = sslFlag.toBoolean()
+    ssl = sslFlag.toBoolean()
     restrict_hosts = mlIsHostLoadBalancer.toBoolean()
 
-	username = mlFlowOperatorUserName
-	password = mlFlowOperatorPassword
-
-	input_file_path = "data/articles"
-	input_file_type = "aggregates"
-	aggregate_record_element = "PubmedArticle"
-	uri_id = "PMID"
-	output_uri_prefix = "/data/pubmed/"
-	output_uri_suffix = ".xml"
-	output_collections = "IngestArticles"
-	input_compression_codec = "gzip"
-	input_compressed = true
+    input_file_path = "data/articles"
+    input_file_type = "aggregates"
+    aggregate_record_element = "PubmedArticle"
+    uri_id = "PMID"
+    output_uri_prefix = "/data/pubmed/"
+    output_uri_suffix = ".xml"
+    output_collections = "IngestArticles"
+    output_permissions = "data-hub-operator,read,data-hub-operator,update"
+    input_compression_codec = "gzip"
+    input_compressed = true
 }
 
 task harmonizeArticles(type: com.marklogic.gradle.task.RunFlowTask) {
   doFirst {
-	mlUsername = mlFlowOperatorUserName
+    mlUsername = mlFlowOperatorUserName
     mlPassword = mlFlowOperatorPassword
   }
   
@@ -88,32 +86,30 @@ task harmonizeArticles(type: com.marklogic.gradle.task.RunFlowTask) {
 }
 
 task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
-	
-	classpath = configurations.mlcp
     
-	command = "IMPORT"
+    classpath = configurations.mlcp
+    
+    command = "IMPORT"
 
-	mode = "local"
-	host = mlHost
-	port = mlFinalPort.toInteger()
+    mode = "local"
+    host = mlHost
+    port = mlFinalPort.toInteger()
 
-	ssl = sslFlag.toBoolean()
+    ssl = sslFlag.toBoolean()
     restrict_hosts = mlIsHostLoadBalancer.toBoolean()
 
-	// username = mlFlowOperatorUserName
-	// password = mlFlowOperatorPassword
+    input_file_path = "data/mesh/mesh.nt"
+    input_file_type = "RDF"
 
-	input_file_path = "data/mesh/mesh.nt"
-	input_file_type = "RDF"
-
-	output_graph = "http://id.nlm.nih.gov/mesh/2020"
+    output_graph = "http://id.nlm.nih.gov/mesh/2020"
+    output_permissions = "data-hub-operator,read,data-hub-operator,update"
 }
 
 task initLoad {
     dependsOn 'loadMeSH'
     dependsOn 'loadArticles'
     dependsOn 'harmonizeArticles'
-	tasks.findByName('loadMesh')
+    tasks.findByName('loadMesh')
     tasks.findByName('harmonizeArticles').mustRunAfter 'loadArticles'
 }
 
