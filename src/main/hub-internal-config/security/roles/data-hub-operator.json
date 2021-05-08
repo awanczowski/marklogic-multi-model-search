@@ -2,6 +2,8 @@
   "role-name": "data-hub-operator",
   "description": "Permits operating a Data Hub application, such as running flows and viewing job data; this role is intended to replace flow-operator-role, and thus it inherits all of the privileges that flow-operator-role does",
   "role": [
+    "data-hub-common",
+    "data-hub-common-writer",
     "rest-extension-user",
     "rest-reader",
     "data-hub-module-reader",
@@ -10,9 +12,20 @@
     "data-hub-mapping-reader",
     "data-hub-entity-model-reader",
     "data-hub-step-definition-reader",
-    "tde-view"
+    "data-hub-ingestion-reader",
+    "data-hub-match-merge-reader",
+    "data-hub-custom-reader",
+    "tde-view",
+    "data-hub-saved-query-user",
+    "redaction-user",
+    "data-hub-temporal-user"
   ],
   "privilege": [
+    {
+      "privilege-name": "data-hub-run-step",
+      "action": "http://marklogic.com/data-hub/privileges/run-step",
+      "kind": "execute"
+    },
     {
       "privilege-name": "xdmp:set-server-field",
       "action": "http://marklogic.com/xdmp/privileges/xdmp-set-server-field",
@@ -34,8 +47,8 @@
       "kind": "execute"
     },
     {
-      "privilege-name": "xdmp:eval-in",
-      "action": "http://marklogic.com/xdmp/privileges/xdmp-eval-in",
+      "privilege-name": "eval-search-string",
+      "action": "http://marklogic.com/xdmp/privileges/eval-search-string",
       "kind": "execute"
     },
     {
@@ -49,16 +62,6 @@
       "kind": "execute"
     },
     {
-      "privilege-name": "xdmp:invoke",
-      "action": "http://marklogic.com/xdmp/privileges/xdmp-invoke",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "xdmp:invoke-in",
-      "action": "http://marklogic.com/xdmp/privileges/xdmp-invoke-in",
-      "kind": "execute"
-    },
-    {
       "privilege-name": "xdbc:invoke",
       "action": "http://marklogic.com/xdmp/privileges/xdbc-invoke",
       "kind": "execute"
@@ -69,58 +72,8 @@
       "kind": "execute"
     },
     {
-      "privilege-name": "xdbc:eval",
-      "action": "http://marklogic.com/xdmp/privileges/xdbc-eval",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "xdbc:eval-in",
-      "action": "http://marklogic.com/xdmp/privileges/xdbc-eval-in",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "xdbc:insert",
-      "action": "http://marklogic.com/xdmp/privileges/xdbc-insert",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "xdbc:insert-in",
-      "action": "http://marklogic.com/xdmp/privileges/xdbc-insert-in",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "xdmp:document-load",
-      "action": "http://marklogic.com/xdmp/privileges/xdmp-document-load",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "rest-writer",
-      "action": "http://marklogic.com/xdmp/privileges/rest-writer",
-      "kind": "execute"
-    },
-    {
       "privilege-name": "xdmp:get-server-field-names",
       "action": "http://marklogic.com/xdmp/privileges/xdmp-get-server-field-names",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "xdmp:value",
-      "action": "http://marklogic.com/xdmp/privileges/xdmp-value",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "unprotected-collections",
-      "action": "http://marklogic.com/xdmp/privileges/unprotected-collections",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "unprotected-uri",
-      "action": "http://marklogic.com/xdmp/privileges/unprotected-uri",
-      "kind": "execute"
-    },
-    {
-      "privilege-name": "ps-user",
-      "action": "http://marklogic.com/xdmp/privileges/ps-user",
       "kind": "execute"
     },
     {
@@ -129,8 +82,8 @@
       "kind": "execute"
     },
     {
-      "privilege-name": "xdmp:with-namespaces",
-      "action": "http://marklogic.com/xdmp/privileges/xdmp-with-namespaces",
+      "privilege-name": "status-builtins",
+      "action": "http://marklogic.com/xdmp/privileges/status",
       "kind": "execute"
     }
   ]

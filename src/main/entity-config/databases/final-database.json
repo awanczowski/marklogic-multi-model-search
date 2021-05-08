@@ -4,29 +4,25 @@
     "prefix" : "es",
     "namespace-uri" : "http://marklogic.com/entity-services"
   } ],
-  "range-element-index" : [ {
+  "range-path-index" : [ {
     "invalid-values" : "reject",
-    "localname" : "publicationYear",
-    "namespace-uri" : null,
-    "range-value-positions" : false,
-    "scalar-type" : "int"
-  }, {
-    "invalid-values" : "reject",
-    "localname" : "wordCount",
-    "namespace-uri" : null,
-    "range-value-positions" : false,
-    "scalar-type" : "int"
-  }, {
-    "invalid-values" : "reject",
-    "localname" : "articleId",
-    "namespace-uri" : null,
+    "path-expression" : "/(es:envelope|envelope)/(es:instance|instance)/HubArticle/id",
     "range-value-positions" : false,
     "scalar-type" : "string",
     "collation" : "http://marklogic.com/collation/codepoint"
   }, {
     "invalid-values" : "reject",
-    "localname" : "id",
-    "namespace-uri" : null,
+    "path-expression" : "/(es:envelope|envelope)/(es:instance|instance)/HubArticle/publicationYear",
+    "range-value-positions" : false,
+    "scalar-type" : "int"
+  }, {
+    "invalid-values" : "reject",
+    "path-expression" : "/(es:envelope|envelope)/(es:instance|instance)/HubArticle/wordCount",
+    "range-value-positions" : false,
+    "scalar-type" : "int"
+  }, {
+    "invalid-values" : "reject",
+    "path-expression" : "/(es:envelope|envelope)/(es:instance|instance)/HubArticleComment/articleId",
     "range-value-positions" : false,
     "scalar-type" : "string",
     "collation" : "http://marklogic.com/collation/codepoint"

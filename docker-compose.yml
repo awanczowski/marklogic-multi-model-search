@@ -1,18 +1,19 @@
 version: '3.6'
 
 services:
-  mesh-demo:
-      image: store/marklogicdb/marklogic-server:10.0-6-dev-centos
-      container_name: mesh_demo
+  mesh-hc-demo:
+      image: store/marklogicdb/marklogic-server:10.0-6.1-dev-centos
+      container_name: mesh_hc_demo
       domainname: .
       environment:
         - MARKLOGIC_INIT=true
         - MARKLOGIC_ADMIN_USERNAME=admin
         - MARKLOGIC_ADMIN_PASSWORD=admin
-        - TZ=Europe/Prague
+        - TZ=UTC
       ports:
         - 5432:5432
         - 7997-8013:7997-8013
+        - 8063:8063
       networks:
         - external_net
         - internal_net

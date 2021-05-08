@@ -5,7 +5,7 @@
   "version" : 0,
   "targetEntityType" : "http://example.org/HubArticle-0.0.1/HubArticle",
   "sourceContext" : "/",
-  "sourceURI" : "/data/pubmed/15268686.xml",
+  "sourceURI" : "/Users/dwanczow/Documents/workspace/mesh/data/articles/export/data/pubmed/15271644.xml",
   "properties" : {
     "citationCount" : {
       "sourcedFrom" : "count("

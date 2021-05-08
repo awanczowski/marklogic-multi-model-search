@@ -8,13 +8,12 @@
     "HubArticle" : {
       "required" : [ ],
       "pii" : [ ],
-      "elementRangeIndex" : [ "id", "publicationYear", "wordCount" ],
-      "rangeIndex" : [ ],
       "wordLexicon" : [ ],
       "properties" : {
         "id" : {
           "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+          "collation" : "http://marklogic.com/collation/codepoint",
+          "facetable" : true
         },
         "publication" : {
           "datatype" : "string",
@@ -30,11 +29,13 @@
         },
         "publicationYear" : {
           "datatype" : "int",
-          "collation" : "http://marklogic.com/collation/codepoint"
+          "collation" : "http://marklogic.com/collation/codepoint",
+          "facetable" : true
         },
         "wordCount" : {
           "datatype" : "int",
-          "collation" : "http://marklogic.com/collation/codepoint"
+          "collation" : "http://marklogic.com/collation/codepoint",
+          "facetable" : true
         }
       }
     }

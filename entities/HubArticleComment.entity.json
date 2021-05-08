@@ -9,8 +9,6 @@
     "HubArticleComment" : {
       "required" : [ ],
       "pii" : [ ],
-      "elementRangeIndex" : [ "articleId" ],
-      "rangeIndex" : [ ],
       "wordLexicon" : [ ],
       "properties" : {
         "id" : {
@@ -30,7 +28,8 @@
         },
         "articleId" : {
           "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+          "collation" : "http://marklogic.com/collation/codepoint",
+          "facetable" : true
         }
       }
     }

@@ -6,11 +6,16 @@
     "manage-user",
     "ps-user",
     "tde-admin",
-    "data-hub-module-writer",
+    "data-hub-custom-writer",
+    "data-hub-entity-model-writer",
     "data-hub-flow-writer",
+    "data-hub-ingestion-writer",
     "data-hub-mapping-writer",
+    "data-hub-match-merge-writer",
+    "data-hub-module-writer",
     "data-hub-step-definition-writer",
-    "data-hub-entity-model-writer"
+    "data-hub-saved-query-user",
+    "data-hub-user-reader"
   ],
   "privilege": [
     {
@@ -21,6 +26,11 @@
     {
       "privilege-name": "any-uri",
       "action": "http://marklogic.com/xdmp/privileges/any-uri",
+      "kind": "execute"
+    },
+    {
+      "privilege-name": "data-hub-download-project-files",
+      "action": "http://marklogic.com/data-hub/privileges/download-project-files",
       "kind": "execute"
     },
     {
@@ -91,6 +101,16 @@
     {
       "privilege-name": "unprotect-path",
       "action": "http://marklogic.com/xdmp/privileges/unprotect-path",
+      "kind": "execute"
+    },
+    {
+      "privilege-name": "temporal:set-use-lsqt",
+      "action": "http://marklogic.com/xdmp/privileges/temporal-set-use-lsqt",
+      "kind": "execute"
+    },
+    {
+      "privilege-name": "temporal:set-lsqt-automation",
+      "action": "http://marklogic.com/xdmp/privileges/temporal-set-lsqt-automation",
       "kind": "execute"
     }
   ]
