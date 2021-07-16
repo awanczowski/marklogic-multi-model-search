@@ -1,9 +1,9 @@
 version: '3.6'
 
 services:
-  mesh-hc-demo:
-      image: store/marklogicdb/marklogic-server:10.0-6.1-dev-centos
-      container_name: mesh_hc_demo
+  mesh-demo:
+      image: store/marklogicdb/marklogic-server:10.0-7-dev-centos
+      container_name: mesh_demo
       domainname: .
       environment:
         - MARKLOGIC_INIT=true

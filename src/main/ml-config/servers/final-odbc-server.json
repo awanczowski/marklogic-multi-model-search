@@ -1,0 +1,9 @@
+{
+  "server-name": "%%mlFinalAppserverName%%-ODBC",
+  "server-type": "odbc",
+  "root": "/",
+  "group-name": "%%GROUP%%",
+  "port": "%%mlFinalODBCPort%%",
+  "modules-database": "%%mlModulesDbName%%",
+  "content-database": "%%mlFinalDbName%%"
+}

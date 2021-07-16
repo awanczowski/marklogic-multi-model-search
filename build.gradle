@@ -5,7 +5,7 @@ plugins {
     id 'net.saliman.properties' version '1.4.6'
 
     // Data Hub plugin
-    id 'com.marklogic.ml-data-hub' version '5.4.2'
+    id 'com.marklogic.ml-data-hub' version '5.5.1'
 
     // Data Service plugin
     id 'com.marklogic.ml-development-tools' version '4.1.1'
@@ -85,21 +85,15 @@ task harmonizeArticles(type: com.marklogic.gradle.task.RunFlowTask) {
 }
 
 task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
-    
     classpath = configurations.mlcp
-    
     command = "IMPORT"
-
     mode = "local"
     host = mlHost
     port = mlFinalPort.toInteger()
-
     ssl = sslFlag.toBoolean()
     restrict_hosts = mlIsHostLoadBalancer.toBoolean()
-
     input_file_path = "data/mesh/sparql.rdf"
     input_file_type = "RDF"
-
     output_graph = "http://id.nlm.nih.gov/mesh"
     output_permissions = "data-hub-common,read,data-hub-common,update"
 }

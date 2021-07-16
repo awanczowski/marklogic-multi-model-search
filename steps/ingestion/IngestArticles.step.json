@@ -1,26 +1,31 @@
 {
-  "name" : "IngestArticles",
-  "description" : "",
-  "batchSize" : 100,
-  "threadCount" : 4,
-  "stepDefinitionName" : "default-ingestion",
-  "stepDefinitionType" : "INGESTION",
-  "additionalCollections" : [ ],
-  "headers" : {
-    "sources" : [ {
-      "name" : "PubMedFlow"
-    } ],
-    "createdOn" : "currentDateTime",
-    "createdBy" : "currentUser"
+  "name": "IngestArticles",
+  "description": "",
+  "batchSize": 100,
+  "threadCount": 4,
+  "stepDefinitionName": "default-ingestion",
+  "stepDefinitionType": "INGESTION",
+  "additionalCollections": [ ],
+  "headers": {
+    "sources": [
+      {
+        "name": "PubMedFlow"
+      }
+    ],
+    "createdOn": "currentDateTime",
+    "createdBy": "currentUser"
   },
-  "sourceQuery" : "cts.collectionQuery([])",
-  "collections" : [ "IngestArticles" ],
-  "permissions" : "data-hub-common,read,data-hub-common,update",
-  "targetDatabase" : "data-hub-STAGING",
-  "targetFormat" : "xml",
-  "inputFilePath" : "/Users/dwanczow/Documents/workspace/mesh/data/articles/export/data/pubmed",
-  "outputURIReplacement" : "",
-  "separator" : "",
-  "sourceFormat" : "xml",
-  "stepId" : "IngestArticles-ingestion"
+  "sourceQuery": "cts.collectionQuery([])",
+  "collections": [
+    "IngestArticles"
+  ],
+  "permissions": "data-hub-common,read,data-hub-common,update",
+  "targetDatabase": "data-hub-STAGING",
+  "targetFormat": "xml",
+  "inputFilePath": "/Users/dwanczow/Documents/workspace/mesh/data/articles/export/data/pubmed",
+  "outputURIReplacement": "",
+  "separator": "",
+  "sourceFormat": "xml",
+  "stepId": "IngestArticles-ingestion",
+  "lastUpdated": "2021-07-16T19:31:49.424362Z"
 }

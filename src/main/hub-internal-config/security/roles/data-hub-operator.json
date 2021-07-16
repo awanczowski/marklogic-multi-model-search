@@ -8,6 +8,7 @@
     "rest-reader",
     "data-hub-module-reader",
     "data-hub-job-reader",
+    "data-hub-job-monitor",
     "data-hub-flow-reader",
     "data-hub-mapping-reader",
     "data-hub-entity-model-reader",
@@ -82,8 +83,8 @@
       "kind": "execute"
     },
     {
-      "privilege-name": "status-builtins",
-      "action": "http://marklogic.com/xdmp/privileges/status",
+      "privilege-name": "data-hub-prune-provenance",
+      "action": "http://marklogic.com/data-hub/privileges/prune-provenance",
       "kind": "execute"
     }
   ]
