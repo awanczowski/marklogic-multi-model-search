@@ -3,7 +3,7 @@
 ## Prerequisites
 
 * MarkLogic Server 10.0-7
-* MarkLogic Data Hub Quick Start 5.5.1 (Optional)
+* MarkLogic Data Hub Central 5.5.1 (Optional)
 * Java 11
 * Gradle 5.2.1 (Optional, gradle wrapper can be leveraged)
 * R Studio (Optional)
