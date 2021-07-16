@@ -2,5 +2,5 @@
   "user-name" : "demo-user",
   "description" : "CHANGEME description of user",
   "password" : "demo123",
-  "role" : [ "data-hub-developer", "qconsole-user" ]
+  "role" : [ "data-hub-developer", "hub-central-developer", "qconsole-user" ]
 }

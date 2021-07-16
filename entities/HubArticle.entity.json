@@ -1,40 +1,48 @@
 {
-  "info" : {
-    "title" : "HubArticle",
-    "version" : "0.0.1",
-    "baseUri" : "http://example.org/"
+  "info": {
+    "title": "HubArticle",
+    "version": "0.0.1",
+    "baseUri": "http://example.org/"
   },
-  "definitions" : {
-    "HubArticle" : {
-      "required" : [ ],
-      "pii" : [ ],
-      "elementRangeIndex" : [ "id", "publicationYear", "wordCount" ],
-      "rangeIndex" : [ ],
-      "wordLexicon" : [ ],
-      "properties" : {
-        "id" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+  "definitions": {
+    "HubArticle": {
+      "required": [ ],
+      "pii": [ ],
+      "elementRangeIndex": [
+        "id",
+        "publicationYear",
+        "wordCount"
+      ],
+      "rangeIndex": [ ],
+      "wordLexicon": [ ],
+      "properties": {
+        "id": {
+          "datatype": "string",
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "publication" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "publication": {
+          "datatype": "string",
+          "facetable": true,
+          "sortable": false,
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "title" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "title": {
+          "datatype": "string",
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "abstract" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "abstract": {
+          "datatype": "string",
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "publicationYear" : {
-          "datatype" : "int",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "publicationYear": {
+          "datatype": "int",
+          "facetable": true,
+          "sortable": false,
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "wordCount" : {
-          "datatype" : "int",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "wordCount": {
+          "datatype": "int",
+          "collation": "http://marklogic.com/collation/codepoint"
         }
       }
     }

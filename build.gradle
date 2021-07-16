@@ -5,7 +5,7 @@ plugins {
     id 'net.saliman.properties' version '1.4.6'
 
     // Data Hub plugin
-    id 'com.marklogic.ml-data-hub' version '5.2.6'
+    id 'com.marklogic.ml-data-hub' version '5.5.1'
 
     // Data Service plugin
     id 'com.marklogic.ml-development-tools' version '4.1.1'
@@ -50,7 +50,6 @@ ext {
 }
 
 task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
-
     classpath = configurations.mlcp
     command = "IMPORT"
     mode = "local"
@@ -61,14 +60,14 @@ task loadArticles(type: com.marklogic.gradle.task.MlcpTask) {
     ssl = sslFlag.toBoolean()
     restrict_hosts = mlIsHostLoadBalancer.toBoolean()
 
-    input_file_path = "data/articles"
+    input_file_path = "data/articles/pubmed20n0499.xml.gz"
     input_file_type = "aggregates"
     aggregate_record_element = "PubmedArticle"
     uri_id = "PMID"
     output_uri_prefix = "/data/pubmed/"
     output_uri_suffix = ".xml"
     output_collections = "IngestArticles"
-    output_permissions = "data-hub-operator,read,data-hub-operator,update"
+    output_permissions = "data-hub-common,read,data-hub-common,update"
     input_compression_codec = "gzip"
     input_compressed = true
 }
@@ -86,23 +85,17 @@ task harmonizeArticles(type: com.marklogic.gradle.task.RunFlowTask) {
 }
 
 task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
-    
     classpath = configurations.mlcp
-    
     command = "IMPORT"
-
     mode = "local"
     host = mlHost
     port = mlFinalPort.toInteger()
-
     ssl = sslFlag.toBoolean()
     restrict_hosts = mlIsHostLoadBalancer.toBoolean()
-
     input_file_path = "data/mesh/mesh.nt"
     input_file_type = "RDF"
-
-    output_graph = "http://id.nlm.nih.gov/mesh/2020"
-    output_permissions = "data-hub-operator,read,data-hub-operator,update"
+    output_graph = "http://id.nlm.nih.gov/mesh"
+    output_permissions = "data-hub-common,read,data-hub-common,update"
 }
 
 task initLoad {

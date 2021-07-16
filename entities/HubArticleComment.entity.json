@@ -1,36 +1,38 @@
 {
-  "info" : {
-    "title" : "HubArticleComment",
-    "version" : "0.0.1",
-    "baseUri" : "http://example.org/",
-    "description" : ""
+  "info": {
+    "title": "HubArticleComment",
+    "version": "0.0.1",
+    "baseUri": "http://example.org/",
+    "description": ""
   },
-  "definitions" : {
-    "HubArticleComment" : {
-      "required" : [ ],
-      "pii" : [ ],
-      "elementRangeIndex" : [ "articleId" ],
-      "rangeIndex" : [ ],
-      "wordLexicon" : [ ],
-      "properties" : {
-        "id" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+  "definitions": {
+    "HubArticleComment": {
+      "required": [ ],
+      "pii": [ ],
+      "elementRangeIndex": [
+        "articleId"
+      ],
+      "rangeIndex": [ ],
+      "wordLexicon": [ ],
+      "properties": {
+        "id": {
+          "datatype": "string",
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "name" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "name": {
+          "datatype": "string",
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "created" : {
-          "datatype" : "dateTime"
+        "created": {
+          "datatype": "dateTime"
         },
-        "comment" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "comment": {
+          "datatype": "string",
+          "collation": "http://marklogic.com/collation/codepoint"
         },
-        "articleId" : {
-          "datatype" : "string",
-          "collation" : "http://marklogic.com/collation/codepoint"
+        "articleId": {
+          "datatype": "string",
+          "collation": "http://marklogic.com/collation/codepoint"
         }
       }
     }

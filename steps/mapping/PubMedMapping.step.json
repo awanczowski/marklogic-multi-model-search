@@ -1,0 +1,47 @@
+{
+  "name": "PubMedMapping",
+  "description": "",
+  "batchSize": 100,
+  "threadCount": 4,
+  "stepDefinitionName": "entity-services-mapping",
+  "stepDefinitionType": "MAPPING",
+  "additionalCollections": [ ],
+  "sourceQuery": "cts.collectionQuery([\"IngestArticles\"])",
+  "sourceDatabase": "data-hub-STAGING",
+  "collections": [
+    "PubMedMapping",
+    "HubArticle"
+  ],
+  "permissions": "data-hub-common,read,data-hub-common,update",
+  "validateEntity": false,
+  "targetDatabase": "data-hub-FINAL",
+  "targetFormat": "xml",
+  "targetEntityType": "http://example.org/HubArticle-0.0.1/HubArticle",
+  "properties": {
+    "citationCount": {
+      "sourcedFrom": "count("
+    },
+    "wordCount": {
+      "sourcedFrom": "count(PubmedArticle/MedlineCitation/Article/Abstract/AbstractText/tokenize(., \" \"))"
+    },
+    "publication": {
+      "sourcedFrom": "PubmedArticle/MedlineCitation/Article/Journal/Title"
+    },
+    "publicationYear": {
+      "sourcedFrom": "PubmedArticle/MedlineCitation/Article/Journal/JournalIssue/PubDate/Year"
+    },
+    "id": {
+      "sourcedFrom": "PubmedArticle/MedlineCitation/PMID"
+    },
+    "abstract": {
+      "sourcedFrom": "PubmedArticle/MedlineCitation/Article/Abstract/AbstractText"
+    },
+    "title": {
+      "sourcedFrom": "PubmedArticle/MedlineCitation/Article/ArticleTitle"
+    }
+  },
+  "namespaces": { },
+  "selectedSource": "query",
+  "stepId": "PubMedMapping-mapping",
+  "lastUpdated": "2021-07-16T19:31:49.15755Z"
+}
