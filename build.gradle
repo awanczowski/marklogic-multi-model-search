@@ -92,7 +92,7 @@ task loadMeSH(type: com.marklogic.gradle.task.MlcpTask) {
     port = mlFinalPort.toInteger()
     ssl = sslFlag.toBoolean()
     restrict_hosts = mlIsHostLoadBalancer.toBoolean()
-    input_file_path = "data/mesh/sparql.rdf"
+    input_file_path = "data/mesh/mesh.nt"
     input_file_type = "RDF"
     output_graph = "http://id.nlm.nih.gov/mesh"
     output_permissions = "data-hub-common,read,data-hub-common,update"
