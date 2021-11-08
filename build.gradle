@@ -5,17 +5,20 @@ plugins {
     id 'net.saliman.properties' version '1.4.6'
 
     // Data Hub plugin
-    id 'com.marklogic.ml-data-hub' version '5.5.1'
+    id 'com.marklogic.ml-data-hub' version '5.6.0'
 
     // Data Service plugin
     id 'com.marklogic.ml-development-tools' version '4.1.1'
 }
 
-repositories {
-    jcenter()
+sourceCompatibility = '11'
+targetCompatibility = '11'
 
-    // Needed for some mlcp dependencies, such as commons-csv:1.5.1-marklogic
-    maven { url "http://developer.marklogic.com/maven2/" }
+repositories {
+  mavenCentral()
+  maven { 
+      url 'https://developer.marklogic.com/maven2/'
+  }
 }
 
 configurations {
@@ -24,19 +27,20 @@ configurations {
 
 dependencies {
     // MarkLogic Client dependencies
-    compile group: 'com.marklogic', name: 'marklogic-client-api', version: '5.3.1'
-    compile group: 'com.marklogic', name: 'ml-javaclient-util', version: '4.1.0'
+    implementation 'com.marklogic:marklogic-client-api:5.5.1'
+    implementation 'com.marklogic:ml-javaclient-util:4.3.0'
 
     // Java Logging dependencies
-    compile group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+    implementation 'ch.qos.logback:logback-classic:1.2.6'
 
     // JAX-B dependencies for JDK 9+
-    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
-    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
+    implementation 'jakarta.xml.bind:jakarta.xml.bind-api:2.3.3'
+    implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.3'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.0'
 
     // MarkLogic Content Pump
-    mlcp "com.marklogic:mlcp:10.0.5"
-
+    mlcp 'com.marklogic:mlcp:10.0.6'
+    
     /**
      * mlcp uses Log4j for logging, and if Log4j can't find a configuration file, it will complain and you'll
      * get none of mlcp's usually-useful logging. It is recommended then that your Gradle configuration for

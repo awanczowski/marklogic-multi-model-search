@@ -1,6 +1,0 @@
-{
-  "user-name" : "demo-exp",
-  "description" : "CHANGEME description of user",
-  "password" : "demo123",
-  "role" : [ "hub-central-explorer", "qconsole-user" ]
-}

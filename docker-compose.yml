@@ -2,7 +2,7 @@ version: '3.6'
 
 services:
   mesh-demo:
-      image: store/marklogicdb/marklogic-server:10.0-7-dev-centos
+      image: store/marklogicdb/marklogic-server:10.0-7.3-centos-1.0.0-ea
       container_name: mesh_demo
       domainname: .
       environment:
